@@ -20,7 +20,82 @@ $ npm install --save sails-hook-model-extra
 The following methods will be added to you model once hook is installed
 
 ### countAndFind()
-### first()
+
+### first(howMany, callback)
+Allow to select top n records(models) from the database.
+
+- `howMany` : Specify how many records required. If not provided only single record is returned.
+- `callback` : A callback to invoke on results. If not specified a `Deferred object` is returned to allow futher criteria(s) to be added.
+
+#### Examples with no additional criterias
+
+##### Get only first record
+```js
+User
+    .first(function(error, users) {
+        if (error) {
+            done(error);
+        } else {
+            expect(users.length).to.be.equal(5);
+            done();
+        }
+    });
+```
+
+##### Get top five records
+```js
+User
+    .first(5, function(error, users) {
+        if (error) {
+            done(error);
+        } else {
+            expect(users.length).to.be.equal(5);
+            done();
+        }
+    });
+```
+
+#### Examples with additional criterias
+
+##### Get only first record where id > 2
+```js
+User
+    .first()
+    .where({
+        id: {
+            '>': 2
+        }
+    })
+    .exec(function(error, users) {
+        if (error) {
+            done(error);
+        } else {
+            expect(users[0].id).to.be.equal(3);
+            expect(users.length).to.be.equal(1);
+            done();
+        }
+    });
+```
+
+##### Get top five records where id > 2
+```js
+User
+    .first(5)
+    .where({
+        id: {
+            '>': 2
+        }
+    })
+    .exec(function(error, users) {
+        if (error) {
+            done(error);
+        } else {
+            expect(users.length).to.be.equal(5);
+            done();
+        }
+    });
+```
+
 ### last()
 
 ## Testing

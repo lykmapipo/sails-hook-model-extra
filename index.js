@@ -1,4 +1,13 @@
 'use strict';
+
+var path = require('path');
+var libPath = path.join(__dirname, 'lib');
+
+//model extras
+var countAndFind = require(path.join(libPath, 'countAndFind'));
+var first = require(path.join(libPath, 'first'));
+var last = require(path.join(libPath, 'last'));
+
 /**
  * @function
  * @description additional methods for sails model
@@ -39,12 +48,15 @@ module.exports = function(sails) {
     function patch() {
         _(sails.models)
             .forEach(function(model) {
-                //bind path validate
+                
+                //bind model additional methods
                 //on concrete models
                 //and left derived model
                 //build from associations
                 if (model.globalId) {
-
+                    countAndFind(model);
+                    first(model);
+                    last(model);
                 }
             });
     };

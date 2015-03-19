@@ -7,7 +7,7 @@ sails-hook-model-extra (WIP)
 
 [![Support via Gratipay](https://cdn.rawgit.com/gratipay/gratipay-badge/2.3.0/dist/gratipay.svg)](https://gratipay.com/lykmapipo/)
 
-Additional model methods for sails. Thay works with both `callback`, `deferred` and `promise` style `model API` provided with sails.
+Additional model methods for sails. They works with both `callback`, `deferred` and `promise` style `model API` provided with sails.
 
 *Note: This requires Sails v0.11.0+.  If v0.11.0+ isn't published to NPM yet, you'll need to install it via Github.*
 
@@ -102,7 +102,7 @@ User
 ```
 
 ### `last(howMany, callback)`
-Allow to select bottom(last) n records(models) from the database.
+Allow to select bottom(last) `n records(models)` from the database.
 
 - `howMany` : Specify how many records required. If not provided only single record is returned.
 - `callback` : A callback to invoke on results. If not specified a `Deferred object` is returned to allow futher criteria(s) to be chained.
@@ -200,6 +200,8 @@ $ npm test
 Fork this repo and push in your ideas. Do not forget to add a bit of test(s) of what value you adding.
 
 ## Literature Reviewed
+
+- [Rails ActiveRecord FinderMethods](http://api.rubyonrails.org/classes/ActiveRecord/FinderMethods.html)
 
 - [Waterline aggregate queries](https://github.com/balderdashy/waterline/issues/61)
 

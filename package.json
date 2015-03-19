@@ -1,0 +1,42 @@
+{
+    "name": "sails-hook-model-extra",
+    "version": "0.1.0",
+    "description": "Additional model methods for sails",
+    "main": "index.js",
+    "sails": {
+        "isHook": true
+    },
+    "scripts": {
+        "test": "npm link && npm link sails-hook-model-extra && ./node_modules/.bin/mocha --timeout 10000"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/lykmapipo/sails-hook-model-extra.git"
+    },
+    "keywords": [
+        "sails",
+        "model",
+        "extra",
+        "additional",
+        "queries",
+        "helpers",
+        "waterline"
+    ],
+    "author": "Lally Elias",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/lykmapipo/sails-hook-model-extra/issues"
+    },
+    "homepage": "https://github.com/lykmapipo/sails-hook-model-extra",
+    "contributors": [{
+        "name": "lykmapipo",
+        "github": "https://github.com/lykmapipo"
+    }],
+    "devDependencies": {
+        "chai": "^2.1.2",
+        "faker": "^2.1.2",
+        "mocha": "^2.2.1",
+        "sails": "^0.11.0",
+        "sails-disk": "^0.10.7"
+    }
+}

@@ -7,7 +7,8 @@
         "isHook": true
     },
     "scripts": {
-        "test": "npm link && npm link sails-hook-model-extra && ./node_modules/.bin/mocha --timeout 10000"
+        "pretest": "npm link && npm link sails-hook-model-extra",
+        "test": "./node_modules/.bin/mocha --recursive --timeout 10000"
     },
     "repository": {
         "type": "git",
@@ -37,6 +38,7 @@
         "faker": "^2.1.2",
         "mocha": "^2.2.1",
         "sails": "^0.11.0",
-        "sails-disk": "^0.10.7"
+        "sails-disk": "^0.10.7",
+        "sails-hook-seed": "^0.1.1"
     }
 }

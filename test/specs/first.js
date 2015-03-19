@@ -35,6 +35,7 @@ describe('Model#first', function() {
                 if (error) {
                     done(error);
                 } else {
+                    expect(users[0].id).to.be.equal(1);
                     expect(users.length).to.be.equal(1);
                     done();
                 }
@@ -50,6 +51,9 @@ describe('Model#first', function() {
                 if (error) {
                     done(error);
                 } else {
+                    expect(_.map(users, 'id'))
+                        .to.include.members([1, 2, 3, 4, 5]);
+
                     expect(users.length).to.be.equal(5);
                     done();
                 }
@@ -66,6 +70,7 @@ describe('Model#first', function() {
                 if (error) {
                     done(error);
                 } else {
+                    expect(users[0].id).to.be.equal(1);
                     expect(users.length).to.be.equal(1);
                     done();
                 }
@@ -79,6 +84,9 @@ describe('Model#first', function() {
         User
             .first(5)
             .then(function(users) {
+                expect(_.map(users, 'id'))
+                    .to.include.members([1, 2, 3, 4, 5]);
+
                 expect(users.length).to.be.equal(5);
                 done();
             })
@@ -126,6 +134,9 @@ describe('Model#first', function() {
                     if (error) {
                         done(error);
                     } else {
+                        expect(_.map(users, 'id'))
+                            .to.include.members([3, 4, 5, 6, 7]);
+
                         expect(users.length).to.be.equal(5);
                         done();
                     }

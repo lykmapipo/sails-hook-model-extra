@@ -7,7 +7,7 @@ sails-hook-model-extra (WIP)
 
 [![Support via Gratipay](https://cdn.rawgit.com/gratipay/gratipay-badge/2.3.0/dist/gratipay.svg)](https://gratipay.com/lykmapipo/)
 
-Additional model methods for sails
+Additional model methods for sails. Thay works with both `callback`, `deferred` and `promise` style `model API` provided with sails.
 
 *Note: This requires Sails v0.11.0+.  If v0.11.0+ isn't published to NPM yet, you'll need to install it via Github.*
 
@@ -19,13 +19,13 @@ $ npm install --save sails-hook-model-extra
 ## API
 The following methods will be added to you model once hook is installed
 
-### `countAndFind()`
+### `countAndFind(criteria, callback)`
 
 ### `first(howMany, callback)`
-Allow to select top n records(models) from the database.
+Allow to select top(first) `n records(models)` from the database.
 
 - `howMany` : Specify how many records required. If not provided only single record is returned.
-- `callback` : A callback to invoke on results. If not specified a `Deferred object` is returned to allow futher criteria(s) to be added.
+- `callback` : A callback to invoke on results. If not specified a `Deferred object` is returned to allow futher criteria(s) to be chained.
 
 #### Examples with no additional criterias
 
@@ -36,7 +36,8 @@ User
         if (error) {
             done(error);
         } else {
-            expect(users.length).to.be.equal(5);
+            expect(users[0].id).to.be.equal(1);
+            expect(users.length).to.be.equal(1);
             done();
         }
     });
@@ -49,6 +50,8 @@ User
         if (error) {
             done(error);
         } else {
+            expect(_.map(users, 'id'))
+                        .to.include.members([1, 2, 3, 4, 5]);
             expect(users.length).to.be.equal(5);
             done();
         }
@@ -90,13 +93,94 @@ User
         if (error) {
             done(error);
         } else {
+            expect(_.map(users, 'id'))
+                            .to.include.members([3, 4, 5, 6, 7]);
             expect(users.length).to.be.equal(5);
             done();
         }
     });
 ```
 
-### `last()`
+### `last(howMany, callback)`
+Allow to select bottom(last) n records(models) from the database.
+
+- `howMany` : Specify how many records required. If not provided only single record is returned.
+- `callback` : A callback to invoke on results. If not specified a `Deferred object` is returned to allow futher criteria(s) to be chained.
+
+#### Examples with no additional criterias
+
+##### Get only last record
+```js
+User
+    .last(function(error, users) {
+        if (error) {
+            done(error);
+        } else {
+            expect(users[0].id).to.be.equal(10);
+            expect(users.length).to.be.equal(1);
+            done();
+        }
+    });
+```
+
+##### Get last five records
+```js
+User
+    .last(5, function(error, users) {
+        if (error) {
+            done(error);
+        } else {
+            expect(_.map(users, 'id'))
+                .to.include.members([10, 9, 8, 7, 6]);
+            expect(users.length).to.be.equal(5);
+            done();
+        }
+    });
+```
+
+#### Examples with additional criterias
+
+##### Get only last record where id < 8
+```js
+User
+    .last()
+    .where({
+        id: {
+            '<': 8
+        }
+    })
+    .exec(function(error, users) {
+        if (error) {
+            done(error);
+        } else {
+            expect(users[0].id).to.be.equal(7);
+            expect(users.length).to.be.equal(1);
+            done();
+        }
+    });
+```
+
+##### Get las five records where id < 8
+```js
+User
+    .last(5)
+    .where({
+        id: {
+            '<': 8
+        }
+    })
+    .exec(function(error, users) {
+        if (error) {
+            done(error);
+        } else {
+            expect(_.map(users, 'id'))
+                .to.include.members([7, 6, 5, 4, 3]);
+            expect(users.length).to.be.equal(5);
+            done();
+        }
+    });
+```
+
 
 ## Testing
 * Clone this repository

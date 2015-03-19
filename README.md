@@ -19,9 +19,9 @@ $ npm install --save sails-hook-model-extra
 ## API
 The following methods will be added to you model once hook is installed
 
-### countAndFind()
+### `countAndFind()`
 
-### ```js first(howMany, callback) ```
+### `first(howMany, callback)`
 Allow to select top n records(models) from the database.
 
 - `howMany` : Specify how many records required. If not provided only single record is returned.
@@ -96,7 +96,7 @@ User
     });
 ```
 
-### last()
+### `last()`
 
 ## Testing
 * Clone this repository

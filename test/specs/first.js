@@ -15,4 +15,10 @@ describe('Model#first', function() {
         done();
     });
 
+    it('should get first five record', function(done) {
+        expect(true).to.be.true;
+
+        done();
+    });
+
 });

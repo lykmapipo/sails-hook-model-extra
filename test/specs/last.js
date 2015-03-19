@@ -15,4 +15,10 @@ describe('Model#last', function() {
         done();
     });
 
+    it('should get last five records', function(done) {
+        expect(true).to.be.true;
+
+        done();
+    });
+
 });

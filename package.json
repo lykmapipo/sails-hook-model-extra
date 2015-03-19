@@ -19,6 +19,8 @@
         "model",
         "extra",
         "additional",
+        "filters",
+        "projections",
         "queries",
         "helpers",
         "waterline"

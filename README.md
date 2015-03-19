@@ -21,7 +21,7 @@ The following methods will be added to you model once hook is installed
 
 ### countAndFind()
 
-### first(howMany, callback)
+### *first(howMany, callback)*
 Allow to select top n records(models) from the database.
 
 - `howMany` : Specify how many records required. If not provided only single record is returned.

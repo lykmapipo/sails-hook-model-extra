@@ -9,7 +9,7 @@
     "scripts": {
         "pretest": "npm link && npm link sails-hook-model-extra",
         "test": "./node_modules/.bin/mocha --recursive --timeout 100000",
-        "posttest":"rm -rf .tmp"
+        "posttest": "rm -rf .tmp"
     },
     "repository": {
         "type": "git",
@@ -24,7 +24,8 @@
         "projections",
         "queries",
         "helpers",
-        "waterline"
+        "waterline",
+        "orm"
     ],
     "author": "Lally Elias",
     "license": "MIT",

@@ -1,6 +1,7 @@
 api
 config
 node_modules
+seeds
 ssl
 .DS_STORE
 *~

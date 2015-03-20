@@ -20,10 +20,11 @@ $ npm install --save sails-hook-model-extra
 The following methods will be added to you model once hook is installed
 
 ### `countAndFind(criteria, callback)`
+
 Allow `count` and `find` to be executed as a compound(single) query.
 
 - `criteria`: A valid sails waterline query criteria. If not provided an empty object criteria `{}` will be used. This criteria will be applied to both `count()` and `find()` query to retain result consistence.
-- 
+
 - `callback`:  A callback to invoke on results. If not specified a `Deferred object` is returned to allow futher criteria(s) to be chained.
 
 *Note!: `countAndFind()` run count() and find() in parallel*

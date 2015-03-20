@@ -1,5 +1,5 @@
-sails-hook-model-extra (WIP)
-============================
+sails-hook-model-extra
+======================
 
 [![Build Status](https://travis-ci.org/lykmapipo/sails-hook-model-extra.svg?branch=master)](https://travis-ci.org/lykmapipo/sails-hook-model-extra)
 

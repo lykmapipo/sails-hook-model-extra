@@ -8,7 +8,7 @@
     },
     "scripts": {
         "pretest": "npm link && npm link sails-hook-model-extra",
-        "test": "./node_modules/.bin/mocha --recursive --timeout 10000",
+        "test": "./node_modules/.bin/mocha --recursive --timeout 100000",
         "posttest":"rm -rf .tmp"
     },
     "repository": {

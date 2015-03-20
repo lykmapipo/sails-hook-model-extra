@@ -17,7 +17,11 @@ $ npm install --save sails-hook-model-extra
 ```
 
 ## API
-The following methods will be added to you model once hook is installed
+The following methods will be added to all models once hook is installed.
+
+* [`countAndFind(criteria, callback)`](https://github.com/lykmapipo/sails-hook-model-extra#countandfindcriteria-callback)
+* [`first(howMany, callback)`](https://github.com/lykmapipo/sails-hook-model-extra#firsthowmany-callback)
+* [`last(howMany, callback)`](https://github.com/lykmapipo/sails-hook-model-extra#lasthowmany-callback)
 
 ### `countAndFind(criteria, callback)`
 
@@ -332,8 +336,10 @@ Fork this repo and push in your ideas. Do not forget to add a bit of test(s) of 
 
 ## Literature Reviewed
 
+- [Waterline](https://github.com/balderdashy/waterline)
+- [Sails Waterline(ORM)](http://sailsjs.org/#!/documentation/reference/waterline)
+- [Sail ORM](http://sailsjs.org/#!/documentation/concepts/ORM)
 - [Rails ActiveRecord FinderMethods](http://api.rubyonrails.org/classes/ActiveRecord/FinderMethods.html)
-
 - [Waterline aggregate queries](https://github.com/balderdashy/waterline/issues/61)
 
 

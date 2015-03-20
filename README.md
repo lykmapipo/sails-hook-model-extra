@@ -23,6 +23,7 @@ The following methods will be added to all models once hook is installed.
 * [`first(howMany, callback)`](https://github.com/lykmapipo/sails-hook-model-extra#firsthowmany-callback)
 * [`last(howMany, callback)`](https://github.com/lykmapipo/sails-hook-model-extra#lasthowmany-callback)
 
+
 ### `countAndFind(criteria, callback)`
 
 Allow `count` and `find` to be executed as a compound(single) query.
@@ -34,6 +35,8 @@ Allow `count` and `find` to be executed as a compound(single) query.
 *Note!: `countAndFind()` run count() and find() in parallel*
 
 #### Examples with no criteria
+
+##### Using callback API
 ```js
 //callback style
 User
@@ -50,8 +53,10 @@ User
             done();
         }
     });
+```
 
-    ...
+##### Using deferred API
+```js
 //deferred style
 User
     .countAndFind()
@@ -68,8 +73,10 @@ User
             done();
         }
     });
+```
 
-    ...
+##### Using promis API
+```js
 //promise style
 User
     .countAndFind()
@@ -89,6 +96,8 @@ User
 ```
 
 #### Examples with criteria provided
+
+##### Using callback API
 ```js
 //callback style
 User
@@ -110,7 +119,10 @@ User
             done();
         }
     });
-    ...
+```
+
+##### Using deferred API
+```js
 //deferred style
 User
     .countAndFind({
@@ -132,7 +144,10 @@ User
             done();
         }
     });
-    ...
+```
+
+##### Using promise API
+```js
 //promise style
  User
     .countAndFind({

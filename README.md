@@ -20,6 +20,136 @@ $ npm install --save sails-hook-model-extra
 The following methods will be added to you model once hook is installed
 
 ### `countAndFind(criteria, callback)`
+Allow `count` and `find` to be executed as a compound(single) query.
+
+- `criteria`: A valid sails waterline query criteria. If not provided an empty object criteria `{}` will be used. This criteria will be applied to both `count()` and `find()` query to retain result consistence.
+- 
+- `callback`:  A callback to invoke on results. If not specified a `Deferred object` is returned to allow futher criteria(s) to be chained.
+
+*Note!: `countAndFind()` run count() and find() in parallel*
+
+#### Examples with no criteria
+```js
+//callback style
+User
+    .countAndFind(function(error, results) {
+        if (error) {
+            done(error);
+        } else {
+            expect(results.count).to.exist;
+            expect(results.data).to.exist;
+
+            expect(results.count).to.be.equal(10);
+            expect(results.data.length).to.be.equal(10);
+
+            done();
+        }
+    });
+
+    ...
+//deferred style
+User
+    .countAndFind()
+    .exec(function(error, results) {
+        if (error) {
+            done(error);
+        } else {
+            expect(results.count).to.exist;
+            expect(results.data).to.exist;
+
+            expect(results.count).to.be.equal(10);
+            expect(results.data.length).to.be.equal(10);
+
+            done();
+        }
+    });
+
+    ...
+//promise style
+User
+    .countAndFind()
+    .then(function(results) {
+
+        expect(results.count).to.exist;
+        expect(results.data).to.exist;
+
+        expect(results.count).to.be.equal(10);
+        expect(results.data.length).to.be.equal(10);
+
+        done();
+    })
+    .catch(function(error) {
+        done(error);
+    });
+```
+
+#### Examples with criteria provided
+```js
+//callback style
+User
+    .countAndFind({
+        id: {
+            '>': 2
+        }
+    }, function(error, results) {
+        if (error) {
+            done(error);
+        } else {
+
+            expect(results.count).to.exist;
+            expect(results.data).to.exist;
+
+            expect(results.count).to.be.equal(8);
+            expect(results.data.length).to.be.equal(8);
+
+            done();
+        }
+    });
+    ...
+//deferred style
+User
+    .countAndFind({
+        id: {
+            '>': 2
+        }
+    })
+    .exec(function(error, results) {
+        if (error) {
+            done(error);
+        } else {
+
+            expect(results.count).to.exist;
+            expect(results.data).to.exist;
+
+            expect(results.count).to.be.equal(8);
+            expect(results.data.length).to.be.equal(8);
+
+            done();
+        }
+    });
+    ...
+//promise style
+ User
+    .countAndFind({
+        id: {
+            '>': 2
+        }
+    })
+    .then(function(results) {
+
+        expect(results.count).to.exist;
+        expect(results.data).to.exist;
+
+        expect(results.count).to.be.equal(8);
+        expect(results.data.length).to.be.equal(8);
+
+        done();
+    })
+    .catch(function(error) {
+        done(error);
+    });
+```
+
 
 ### `first(howMany, callback)`
 Allow to select top(first) `n records(models)` from the database.

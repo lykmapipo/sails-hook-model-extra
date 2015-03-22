@@ -22,7 +22,7 @@ The following methods will be added to all models once hook is installed.
 * [`countAndFind(criteria, callback)`](https://github.com/lykmapipo/sails-hook-model-extra#countandfindcriteria-callback)
 * [`first(howMany, callback)`](https://github.com/lykmapipo/sails-hook-model-extra#firsthowmany-callback)
 * [`last(howMany, callback)`](https://github.com/lykmapipo/sails-hook-model-extra#lasthowmany-callback)
-* [`softDelete(criteria, callback)`]()
+* [`softDelete(criteria, callback)`](https://github.com/lykmapipo/sails-hook-model-extra#softdeletecriteria-callback)
 
 
 ### `countAndFind(criteria, callback)`
@@ -332,8 +332,62 @@ User
     });
 ```
 
-### `softDefele(criteria, callback)`
-Allow to soft delete model(s) by set `deletedAt` attribute to current timestamp.
+### `softDelete(criteria, callback)`
+Allow to soft delete model(s) by set `deletedAt` attribute to current timestamp. Currently `softDelete` requires a model to explicit define `deletedAt` attribute.
+
+- `criteria`: A valid sails waterline query criteria. If not provided an empty object criteria `{}` will be used.
+
+- `callback`:  A callback to invoke on results. If not specified a `Deferred object` is returned to allow futher criteria(s) to be chained.
+
+#### Examples
+##### Example using model callback API
+```js
+User
+    .softDelete({
+        id: user.id
+    }, function(error, deletedUsers) {
+        if (error) {
+            done(error);
+        } else {
+            expect(deletedUsers.length).to.be.equal(1);
+            expect(deletedUsers[0].deletedAt).to.not.be.null;
+            done();
+        }
+    });
+```
+
+##### Example using model deferred API
+```js
+User
+    .softDelete({
+        id: user.id
+    })
+    .exec(function(error, deletedUsers) {
+        if (error) {
+            done(error);
+        } else {
+            expect(deletedUsers.length).to.be.equal(1);
+            expect(deletedUsers[0].deletedAt).to.not.be.null;
+            done();
+        }
+    });
+```
+
+##### Example using model promise API
+```js
+User
+    .softDelete({
+        id: user.id
+    })
+    .then(function(deletedUsers) {
+        expect(deletedUsers.length).to.be.equal(1);
+        expect(deletedUsers[0].deletedAt).to.not.be.null;
+        done();
+    })
+    .catch(function(error) {
+        done(error);
+    });
+```
 
 
 ## Testing

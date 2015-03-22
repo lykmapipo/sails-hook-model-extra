@@ -22,6 +22,7 @@ The following methods will be added to all models once hook is installed.
 * [`countAndFind(criteria, callback)`](https://github.com/lykmapipo/sails-hook-model-extra#countandfindcriteria-callback)
 * [`first(howMany, callback)`](https://github.com/lykmapipo/sails-hook-model-extra#firsthowmany-callback)
 * [`last(howMany, callback)`](https://github.com/lykmapipo/sails-hook-model-extra#lasthowmany-callback)
+* [`softDelete(criteria, callback)`]()
 
 
 ### `countAndFind(criteria, callback)`
@@ -330,6 +331,9 @@ User
         }
     });
 ```
+
+### `softDefele(criteria, callback)`
+Allow to soft delete model(s) by set `deletedAt` attribute to current timestamp.
 
 
 ## Testing

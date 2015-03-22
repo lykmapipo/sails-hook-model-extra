@@ -20,10 +20,6 @@ describe('Model#softDelete', function() {
         });
     });
 
-    it('should be able attach softDelete model method', function(done) {
-        expect(User).to.respondTo('softDelete');
-        done();
-    });
 
     describe('Model#softDelete#static', function() {
         //clear user deletedAt before each spec
@@ -39,6 +35,11 @@ describe('Model#softDelete', function() {
                         done();
                     }
                 });
+        });
+
+        it('should be able attach softDelete as model static method', function(done) {
+            expect(User).to.respondTo('softDelete');
+            done();
         });
 
         it('should be able to soft delete model(s) using callback model API', function(done) {

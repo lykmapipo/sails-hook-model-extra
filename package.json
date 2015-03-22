@@ -1,6 +1,6 @@
 {
     "name": "sails-hook-model-extra",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "description": "Additional model methods for sails",
     "main": "index.js",
     "sails": {

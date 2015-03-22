@@ -12,6 +12,9 @@ module.exports = {
             type: 'email',
             required: true,
             unique: true
+        },
+        deletedAt: {
+            type: 'datetime'
         }
     }
 };

@@ -19,13 +19,16 @@
         "sails",
         "model",
         "extra",
+        "hook",
         "additional",
         "filters",
         "projections",
         "queries",
         "helpers",
         "waterline",
-        "orm"
+        "orm",
+        "plugin",
+        "module"
     ],
     "author": "Lally Elias",
     "license": "MIT",

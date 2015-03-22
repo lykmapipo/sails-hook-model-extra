@@ -7,6 +7,7 @@ var libPath = path.join(__dirname, 'lib');
 var countAndFind = require(path.join(libPath, 'countAndFind'));
 var first = require(path.join(libPath, 'first'));
 var last = require(path.join(libPath, 'last'));
+var softDelete = require(path.join(libPath, 'softDelete'));
 
 /**
  * @function
@@ -48,7 +49,7 @@ module.exports = function(sails) {
     function patch() {
         _(sails.models)
             .forEach(function(model) {
-                
+
                 //bind model additional methods
                 //on concrete models
                 //and left derived model
@@ -57,6 +58,7 @@ module.exports = function(sails) {
                     countAndFind(model);
                     first(model);
                     last(model);
+                    softDelete(model);
                 }
             });
     };

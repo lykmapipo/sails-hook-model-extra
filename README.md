@@ -333,7 +333,7 @@ User
 ```
 
 ### `softDelete(criteria, callback)`
-Allow to soft delete model(s) by set `deletedAt` attribute to current timestamp. Currently `softDelete` requires a model to explicit define `deletedAt` attribute.
+Allow to soft delete model(s) by set `deletedAt` attribute to current timestamp. Currently `sails-hook-model-extra` will extend loaded models with `deletedAt datetime` attribute unless explicit defined on the models.
 
 - `criteria`: A valid sails waterline query criteria. If not provided an empty object criteria `{}` will be used.
 

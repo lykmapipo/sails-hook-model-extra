@@ -17,6 +17,16 @@ var softDelete = require(path.join(libPath, 'softDelete'));
 module.exports = function(sails) {
     return {
         initialize: function(done) {
+            //first
+            //
+            //patching models to add additional required attributes
+            sails
+                .after(['hook:moduleloader:loaded'], function() {
+                    patchAttributes();
+                });
+
+            //later on wait for this events
+            //to apply extra methods to models
             var eventsToWaitFor = [];
 
             //wait for orm 
@@ -63,5 +73,21 @@ module.exports = function(sails) {
             });
     };
 
+    //extend model attributes
+    //with deletedAt attribute
+    function patchAttributes() {
+        _(sails.models)
+            .forEach(function(model) {
+                //bind deleteAt attributes into
+                //model attributes if not explicit defined
+                if (!model.attributes.deletedAt) {
+                    _.extend(model.attributes, {
+                        deletedAt: {
+                            type: 'datetime'
+                        }
+                    });
+                }
+            });
+    }
 
 };

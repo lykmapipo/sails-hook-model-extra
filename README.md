@@ -20,7 +20,7 @@ $ npm install --save sails-hook-model-extra
 The following methods will be added to all models once hook is installed.
 
 * [`countAndFind(criteria, callback)`](https://github.com/lykmapipo/sails-hook-model-extra#countandfindcriteria-callback)
-* [`countAndSearch(searchTerm, callback)`]()
+* [`countAndSearch(searchTerm, callback)`](https://github.com/lykmapipo/sails-hook-model-extra#countandsearchsearchterm-callback)
 * [`first(howMany, callback)`](https://github.com/lykmapipo/sails-hook-model-extra#firsthowmany-callback)
 * [`last(howMany, callback)`](https://github.com/lykmapipo/sails-hook-model-extra#lasthowmany-callback)
 * [`search(searchTerm, callback)`](https://github.com/lykmapipo/sails-hook-model-extra#searchsearchterm-callback)

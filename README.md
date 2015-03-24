@@ -22,6 +22,7 @@ The following methods will be added to all models once hook is installed.
 * [`countAndFind(criteria, callback)`](https://github.com/lykmapipo/sails-hook-model-extra#countandfindcriteria-callback)
 * [`first(howMany, callback)`](https://github.com/lykmapipo/sails-hook-model-extra#firsthowmany-callback)
 * [`last(howMany, callback)`](https://github.com/lykmapipo/sails-hook-model-extra#lasthowmany-callback)
+* [`search(searchTerm, callback)`]()
 * [`softDelete(criteria, callback)`](https://github.com/lykmapipo/sails-hook-model-extra#softdeletecriteria-callback)
 
 
@@ -329,6 +330,83 @@ User
             expect(users.length).to.be.equal(5);
             done();
         }
+    });
+```
+
+### `search(searchTerm, callback)`
+Allow to free search model record(s). Currently `sails-hook-model-extra` will search model attributes of type `['string', 'text', 'integer','float', 'json', 'email']`, unless you explicit ovveride this default behaviour per model or globally in all models in `config/models.js` by providing array of searchable attributes types using `searchableTypes` static attribute.
+i.e
+```js
+...
+
+//tells which attributes types are searchable
+//you can also configure it global to all models in `config/models.js`
+searchableTypes: [
+    'string', 'text', 'integer',
+    'float', 'json', 'email'
+]
+...
+```
+
+- `searchTerm`: A string to be used in searching records. If not provided an empty object criteria `{}` will be used.
+
+- `callback`:  A callback to invoke on results. If not specified a `Deferred object` is returned to allow futher criteria(s) to be chained.
+
+#### Examples
+##### Example using model callback API
+```js
+User
+    .search('gmail', function(error, users) {
+        if (error) {
+            done(error)
+        } else {
+            expect(users.length).to.be.equal(4);
+
+            expect(_.map(users, 'username'))
+                .to.include.members(['Trent Marvin', 'Malika Greenfelder']);
+
+            done();
+        }
+    });
+```
+##### Example using model deferred API
+```js
+User
+    .search('vi')
+    .exec(function(error, users) {
+        if (error) {
+            done(error);
+        } else {
+            expect(users.length).to.be.equal(4);
+
+            expect(_.map(users, 'username'))
+                .to
+                .include
+                .members(['Trent Marvin', 'Viva Gaylord', 'Victoria Steuber']);
+
+            expect(_.map(users, 'email'))
+                .to
+                .include
+                .members(['vicky2@gmail.com']);
+
+            done();
+        }
+    });
+```
+##### Example using model promise API
+```js
+User
+    .search('Malika')
+    .then(function(users) {
+        expect(users.length).to.be.equal(1);
+        
+        expect(users[0].username).to.be.equal('Malika Greenfelder');
+        expect(users[0].email).to.be.equal('kory.dooley@gmail.com');
+        
+        done();
+    })
+    .catch(function(error) {
+        done(error);
     });
 ```
 

@@ -7,6 +7,7 @@ var libPath = path.join(__dirname, 'lib');
 var countAndFind = require(path.join(libPath, 'countAndFind'));
 var first = require(path.join(libPath, 'first'));
 var last = require(path.join(libPath, 'last'));
+var search = require(path.join(libPath, 'search'));
 var softDelete = require(path.join(libPath, 'softDelete'));
 
 /**
@@ -68,6 +69,7 @@ module.exports = function(sails) {
                     countAndFind(model);
                     first(model);
                     last(model);
+                    search(model);
                     softDelete(model);
                 }
             });

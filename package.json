@@ -7,7 +7,7 @@
         "isHook": true
     },
     "scripts": {
-        "pretest": "npm link && npm link sails-hook-model-extra",
+        "pretest": "rm -rf .tmp && npm link && npm link sails-hook-model-extra",
         "test": "./node_modules/.bin/mocha --recursive --timeout 100000",
         "posttest": "rm -rf .tmp"
     },
@@ -47,5 +47,8 @@
         "sails": "^0.11.0",
         "sails-disk": "^0.10.7",
         "sails-hook-seed": "^0.1.1"
+    },
+    "dependencies": {
+        "lodash": "^3.5.0"
     }
 }

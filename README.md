@@ -174,7 +174,7 @@ User
 ```
 
 
-### `search(searchTerm, callback)`
+### `countAndSearch(searchTerm, callback)`
 Count hits and perform to free search on model record(s). Currently `sails-hook-model-extra` will search model attributes of type `string, text, integer, float, json and email`, unless you explicit ovveride this default behaviour per model or globally on all models in `config/models.js` by providing array of searchable attributes types using `searchableTypes` static attribute.
 i.e
 ```js

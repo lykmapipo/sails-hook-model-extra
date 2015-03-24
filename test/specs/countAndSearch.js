@@ -9,7 +9,7 @@ describe('Model#search', function() {
         done();
     });
 
-    it('should be able to run as find() when no searchTerm provided', function(done) {
+    it('should be able to run as countAndFind() when no searchTerm provided', function(done) {
         User
             .countAndSearch(function(error, results) {
                 if (error) {

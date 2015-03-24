@@ -20,6 +20,7 @@ $ npm install --save sails-hook-model-extra
 The following methods will be added to all models once hook is installed.
 
 * [`countAndFind(criteria, callback)`](https://github.com/lykmapipo/sails-hook-model-extra#countandfindcriteria-callback)
+* [`countAndSearch(searchTerm, callback)`]()
 * [`first(howMany, callback)`](https://github.com/lykmapipo/sails-hook-model-extra#firsthowmany-callback)
 * [`last(howMany, callback)`](https://github.com/lykmapipo/sails-hook-model-extra#lasthowmany-callback)
 * [`search(searchTerm, callback)`](https://github.com/lykmapipo/sails-hook-model-extra#searchsearchterm-callback)
@@ -171,6 +172,89 @@ User
         done(error);
     });
 ```
+
+
+### `search(searchTerm, callback)`
+Count hits and perform to free search on model record(s). Currently `sails-hook-model-extra` will search model attributes of type `string, text, integer, float, json and email`, unless you explicit ovveride this default behaviour per model or globally on all models in `config/models.js` by providing array of searchable attributes types using `searchableTypes` static attribute.
+i.e
+```js
+...
+
+//tells which attributes types are searchable for only this model
+//you can also configure it global for all models in `config/models.js`
+searchableTypes: [
+    'string', 'text', 'integer',
+    'float', 'json', 'email'
+]
+...
+```
+
+- `searchTerm`: A string to be used in searching records. If not provided an empty object criteria `{}` will be used. This criteria will be applied to both `count()` and `find()` query to retain result consistence.
+
+- `callback`:  A callback to invoke on results. If not specified a `Deferred object` is returned to allow futher criteria(s) to be chained.
+
+*Warning!: Using this type of search directly when dataset is few hundreds otherwise consider using search with pagination*
+
+*Note!: `countAndSearch()` run count() and find() in parallel*
+
+#### Examples
+##### Example using model callback API
+```js
+User
+    .countAndSearch('gmail', function(error, results) {
+        if (error) {
+            done(error)
+        } else {
+            expect(results.count).to.be.equal(4);
+
+            expect(_.map(results.data, 'username'))
+                .to.include.members(['Trent Marvin', 'Malika Greenfelder']);
+
+            done();
+        }
+    });
+```
+##### Example using model deferred API
+```js
+User
+    .countAndSearch('vi')
+    .exec(function(error, results) {
+        if (error) {
+            done(error);
+        } else {
+            expect(results.count).to.be.equal(4);
+
+            expect(_.map(results.data, 'username'))
+                .to
+                .include
+                .members(['Trent Marvin', 'Viva Gaylord', 'Victoria Steuber']);
+
+            expect(_.map(results.data, 'email'))
+                .to
+                .include
+                .members(['vicky2@gmail.com']);
+
+            done();
+        }
+    });
+```
+##### Example using model promise API
+```js
+User
+    .countAndSearch('Malika')
+    .then(function(results) {
+        expect(results.count).to.be.equal(1);
+
+        expect(results.data[0].username).to.be.equal('Malika Greenfelder');
+        expect(results.data[0].email).to.be.equal('kory.dooley@gmail.com');
+
+        done();
+    })
+    .catch(function(error) {
+        done(error);
+    });
+```
+
 
 
 ### `first(howMany, callback)`

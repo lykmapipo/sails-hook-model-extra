@@ -5,6 +5,7 @@ var libPath = path.join(__dirname, 'lib');
 
 //model extras
 var countAndFind = require(path.join(libPath, 'countAndFind'));
+var countAndSearch = require(path.join(libPath, 'countAndSearch'));
 var first = require(path.join(libPath, 'first'));
 var last = require(path.join(libPath, 'last'));
 var search = require(path.join(libPath, 'search'));
@@ -67,6 +68,7 @@ module.exports = function(sails) {
                 //build from associations
                 if (model.globalId) {
                     countAndFind(model);
+                    countAndSearch(model);
                     first(model);
                     last(model);
                     search(model);

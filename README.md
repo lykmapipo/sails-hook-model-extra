@@ -22,7 +22,7 @@ The following methods will be added to all models once hook is installed.
 * [`countAndFind(criteria, callback)`](https://github.com/lykmapipo/sails-hook-model-extra#countandfindcriteria-callback)
 * [`first(howMany, callback)`](https://github.com/lykmapipo/sails-hook-model-extra#firsthowmany-callback)
 * [`last(howMany, callback)`](https://github.com/lykmapipo/sails-hook-model-extra#lasthowmany-callback)
-* [`search(searchTerm, callback)`]()
+* [`search(searchTerm, callback)`](https://github.com/lykmapipo/sails-hook-model-extra#searchsearchterm-callback)
 * [`softDelete(criteria, callback)`](https://github.com/lykmapipo/sails-hook-model-extra#softdeletecriteria-callback)
 
 
@@ -253,6 +253,7 @@ User
     });
 ```
 
+
 ### `last(howMany, callback)`
 Allow to select bottom(last) `n records(models)` from the database.
 
@@ -333,14 +334,15 @@ User
     });
 ```
 
+
 ### `search(searchTerm, callback)`
-Allow to free search model record(s). Currently `sails-hook-model-extra` will search model attributes of type `['string', 'text', 'integer','float', 'json', 'email']`, unless you explicit ovveride this default behaviour per model or globally in all models in `config/models.js` by providing array of searchable attributes types using `searchableTypes` static attribute.
+Allow to free search model record(s). Currently `sails-hook-model-extra` will search model attributes of type `['string', 'text', 'integer','float', 'json', 'email']`, unless you explicit ovveride this default behaviour per model or globally on all models in `config/models.js` by providing array of searchable attributes types using `searchableTypes` static attribute.
 i.e
 ```js
 ...
 
-//tells which attributes types are searchable
-//you can also configure it global to all models in `config/models.js`
+//tells which attributes types are searchable for only this model
+//you can also configure it global for all models in `config/models.js`
 searchableTypes: [
     'string', 'text', 'integer',
     'float', 'json', 'email'
@@ -399,7 +401,7 @@ User
     .search('Malika')
     .then(function(users) {
         expect(users.length).to.be.equal(1);
-        
+
         expect(users[0].username).to.be.equal('Malika Greenfelder');
         expect(users[0].email).to.be.equal('kory.dooley@gmail.com');
         
@@ -409,6 +411,7 @@ User
         done(error);
     });
 ```
+
 
 ### `softDelete(criteria, callback)`
 Allow to soft delete model(s) by set `deletedAt` attribute to current timestamp. Currently `sails-hook-model-extra` will extend loaded models with `deletedAt datetime` attribute unless explicit defined on the models.

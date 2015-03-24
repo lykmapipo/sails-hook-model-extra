@@ -354,6 +354,8 @@ searchableTypes: [
 
 - `callback`:  A callback to invoke on results. If not specified a `Deferred object` is returned to allow futher criteria(s) to be chained.
 
+*Warning!: Using this type of search directly when dataset is few hundreds otherwise consider using search with pagination*
+
 #### Examples
 ##### Example using model callback API
 ```js

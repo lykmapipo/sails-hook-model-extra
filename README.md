@@ -336,7 +336,7 @@ User
 
 
 ### `search(searchTerm, callback)`
-Allow to free search model record(s). Currently `sails-hook-model-extra` will search model attributes of type `['string', 'text', 'integer','float', 'json', 'email']`, unless you explicit ovveride this default behaviour per model or globally on all models in `config/models.js`, by providing array of searchable attributes types using `searchableTypes` static attribute.
+Allow to free search model record(s). Currently `sails-hook-model-extra` will search model attributes of type `string, text, integer, float, json and email`, unless you explicit ovveride this default behaviour per model or globally on all models in `config/models.js`, by providing array of searchable attributes types using `searchableTypes` static attribute.
 i.e
 ```js
 ...

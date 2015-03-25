@@ -87,7 +87,8 @@ module.exports = function(sails) {
                 if (!model.attributes.deletedAt) {
                     _.extend(model.attributes, {
                         deletedAt: {
-                            type: 'datetime'
+                            type: 'datetime',
+                            defaultsTo:null
                         }
                     });
                 }

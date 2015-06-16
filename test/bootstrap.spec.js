@@ -24,6 +24,8 @@ before(function(done) {
             hooks: {
                 sockets: false,
                 pubsub: false,
+                views: false,
+                http: false,
                 grunt: false //we dont need grunt in test
             }
         }, function(error, sails) {

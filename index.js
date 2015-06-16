@@ -1,4 +1,5 @@
 'use strict';
+
 //dependencies
 var path = require('path');
 var libPath = path.join(__dirname, 'lib');
@@ -17,6 +18,45 @@ var softDelete = require(path.join(libPath, 'softDelete'));
  * @param  {Object} sails a sails application instance
  */
 module.exports = function(sails) {
+    //patch sails model
+    //to add extra methods
+    function patch() {
+        _(sails.models)
+            .forEach(function(model) {
+
+                //bind model additional methods
+                //on concrete models
+                //and left derived model
+                //build from associations
+                if (model.globalId) {
+                    countAndFind(model);
+                    countAndSearch(model);
+                    first(model);
+                    last(model);
+                    search(model);
+                    softDelete(model);
+                }
+            });
+    }
+
+    //extend model attributes
+    //with deletedAt attribute
+    function patchAttributes() {
+        _(sails.models)
+            .forEach(function(model) {
+                //bind deleteAt attributes into
+                //model attributes if not explicit defined
+                if (!model.attributes.deletedAt) {
+                    _.extend(model.attributes, {
+                        deletedAt: {
+                            type: 'datetime',
+                            defaultsTo: null
+                        }
+                    });
+                }
+            });
+    }
+
     return {
         initialize: function(done) {
             //first
@@ -55,44 +95,4 @@ module.exports = function(sails) {
                 });
         }
     };
-
-    //patch sails model
-    //to add extra methods
-    function patch() {
-        _(sails.models)
-            .forEach(function(model) {
-
-                //bind model additional methods
-                //on concrete models
-                //and left derived model
-                //build from associations
-                if (model.globalId) {
-                    countAndFind(model);
-                    countAndSearch(model);
-                    first(model);
-                    last(model);
-                    search(model);
-                    softDelete(model);
-                }
-            });
-    };
-
-    //extend model attributes
-    //with deletedAt attribute
-    function patchAttributes() {
-        _(sails.models)
-            .forEach(function(model) {
-                //bind deleteAt attributes into
-                //model attributes if not explicit defined
-                if (!model.attributes.deletedAt) {
-                    _.extend(model.attributes, {
-                        deletedAt: {
-                            type: 'datetime',
-                            defaultsTo:null
-                        }
-                    });
-                }
-            });
-    }
-
 };

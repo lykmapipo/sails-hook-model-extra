@@ -1,6 +1,7 @@
 'use strict';
+
+//dependencies
 var expect = require('chai').expect;
-var faker = require('faker');
 
 describe('Model#search', function() {
 
@@ -26,7 +27,7 @@ describe('Model#search', function() {
         User
             .search('gmail', function(error, users) {
                 if (error) {
-                    done(error)
+                    done(error);
                 } else {
                     expect(users.length).to.be.equal(4);
 

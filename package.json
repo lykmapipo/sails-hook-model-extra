@@ -7,8 +7,8 @@
         "isHook": true
     },
     "scripts": {
-        "pretest": "rm -rf .tmp && npm link && npm link sails-hook-model-extra",
-        "test": "./node_modules/.bin/mocha --recursive --timeout 100000",
+        "pretest": "npm link && npm link sails-hook-model-extra",
+        "test": "grunt test",
         "posttest": "rm -rf .tmp"
     },
     "repository": {
@@ -47,6 +47,10 @@
         "mocha": "^2.2.1",
         "sails": "^0.11.0",
         "sails-disk": "^0.10.7",
-        "sails-hook-seed": "^0.1.1"
+        "sails-hook-seed": "^0.1.1",
+        "grunt": "^0.4.5",
+        "grunt-contrib-jshint": "^0.11.2",
+        "grunt-mocha-test": "^0.12.7",
+        "jshint-stylish": "^1.0.1"
     }
 }
